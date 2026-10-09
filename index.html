@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff6a00">
+<title>DEZONE FF TOOLS</title>
+<link rel="manifest" href="manifest.json">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  header {
+    background: linear-gradient(135deg, #ff6a00, #ff9500);
+    padding: 20px 16px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(255,106,0,0.4);
+  }
+  header h1 { font-size: 22px; letter-spacing: 1px; font-weight: 900; text-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+  header p { font-size: 11px; opacity: 0.9; margin-top: 4px; letter-spacing: 2px; }
+
+  .tabs {
+    display: flex;
+    background: #1a1a1a;
+    position: sticky;
+    top: 76px;
+    z-index: 9;
+    border-bottom: 1px solid #2a2a2a;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 1; min-width: 80px; padding: 14px 8px;
+    text-align: center; font-size: 12px; font-weight: 600;
+    color: #888; cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s; white-space: nowrap;
+  }
+  .tab.active { color: #ff6a00; border-bottom-color: #ff6a00; background: #151515; }
+
+  .page { display: none; padding: 18px 16px; animation: fade 0.3s; }
+  .page.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .card { background: #1a1a1a; border: 1px solid #262626; border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+  .card h3 { font-size: 14px; color: #ff6a00; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .card h3::before { content: ''; width: 4px; height: 16px; background: #ff6a00; border-radius: 2px; }
+
+  input, select, button {
+    width: 100%; padding: 13px 14px; font-size: 15px;
+    border-radius: 10px; border: 1px solid #2a2a2a;
+    background: #0d0d0d; color: #fff;
+    margin-bottom: 10px; outline: none; font-family: inherit;
+  }
+  input:focus, select:focus { border-color: #ff6a00; }
+  button {
+    background: linear-gradient(135deg, #ff6a00, #ff9500);
+    border: none; font-weight: 700; cursor: pointer;
+    color: #fff; letter-spacing: 0.5px; transition: 0.15s;
+  }
+  button:active { transform: scale(0.97); opacity: 0.9; }
+
+  .result {
+    background: #0d0d0d; border: 1px solid #262626; border-radius: 10px;
+    padding: 14px; font-size: 13px; color: #bbb;
+    line-height: 1.8; min-height: 60px;
+  }
+  .result b { color: #ff6a00; }
+  .result .name { color: #fff; font-size: 16px; font-weight: 700; display: block; margin-bottom: 8px; }
+
+  .coming-soon { text-align: center; padding: 30px 16px; }
+  .coming-soon .icon { font-size: 48px; margin-bottom: 12px; }
+  .coming-soon h4 { color: #ff6a00; font-size: 18px; margin-bottom: 8px; font-weight: 800; }
+  .coming-soon p { color: #999; font-size: 13px; line-height: 1.6; }
+
+  .sens-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #1f1f1f; font-size: 13px; }
+  .sens-row:last-child { border-bottom: none; }
+  .sens-val { background: #ff6a00; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 13px; }
+
+  .tip { display: flex; gap: 10px; padding: 12px; background: #151515; border-radius: 10px; margin-bottom: 10px; font-size: 13px; line-height: 1.5; border-left: 3px solid #ff6a00; }
+  .tip .num { color: #ff6a00; font-weight: 900; font-size: 15px; min-width: 20px; }
+
+  footer { text-align: center; padding: 20px; font-size: 11px; color: #555; border-top: 1px solid #1a1a1a; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔥 DEZONE FF TOOLS</h1>
+  <p>FREE FIRE COMPANION</p>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPage('search', this)">Player</div>
+  <div class="tab" onclick="showPage('sens', this)">Sensitivity</div>
+  <div class="tab" onclick="showPage('tips', this)">Tips</div>
+  <div class="tab" onclick="showPage('verify', this)">Verify</div>
+  <div class="tab" onclick="showPage('about', this)">About</div>
+</div>
+
+<div id="search" class="page active">
+  <div class="card">
+    <h3>Player Lookup</h3>
+    <div class="coming-soon">
+      <div class="icon">🚧</div>
+      <h4>Coming Soon</h4>
+      <p>Player lookup is under development.<br>We're building a live stats feature — check back soon!</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Quick Info</h3>
+    <div class="result">
+      • UIDs are 8–12 digits<br>
+      • Find your UID in Free Fire → Profile<br>
+      • Stats update within minutes of a match
+    </div>
+  </div>
+</div>
+
+<div id="sens" class="page">
+  <div class="card">
+    <h3>Pick Your Playstyle</h3>
+    <select id="playstyle" onchange="updateSens()">
+      <option value="headshot">🎯 Headshot Focus</option>
+      <option value="rush">⚡ Rusher / Aggressive</option>
+      <option value="sniper">🔭 Sniper / Long Range</option>
+      <option value="balanced">⚖️ Balanced</option>
+    </select>
+    <div class="result" id="sensResult"></div>
+  </div>
+  <div class="card">
+    <h3>DPS Tips</h3>
+    <div class="tip"><span class="num">1</span>Lower your general sensitivity by 5–10 each match until headshots feel natural.</div>
+    <div class="tip"><span class="num">2</span>Turn OFF "Fire Button Auto-Aim" if you want full drag control.</div>
+    <div class="tip"><span class="num">3</span>Practice in Training Ground for 10 min before ranked.</div>
+  </div>
+</div>
+
+<div id="tips" class="page">
+  <div class="card">
+    <h3>Headshot Tips</h3>
+    <div class="tip"><span class="num">1</span>Aim slightly above the shoulder line, then drag down as you fire.</div>
+    <div class="tip"><span class="num">2</span>Use 2-finger claw for faster drag control.</div>
+    <div class="tip"><span class="num">3</span>M1887 + MP40 = deadliest close-range combo.</div>
+    <div class="tip"><span class="num">4</span>Always keep crosshair at head level while moving.</div>
+  </div>
+  <div class="card">
+    <h3>Rank Push Tips</h3>
+    <div class="tip"><span class="num">1</span>Land at edge locations early game to survive longer.</div>
+    <div class="tip"><span class="num">2</span>Play with a squad — solo rank pushes are much harder.</div>
+    <div class="tip"><span class="num">3</span>Avoid hot drops unless you're confident in your aim.</div>
+    <div class="tip"><span class="num">4</span>Use gloo walls aggressively — don't save them.</div>
+  </div>
+</div>
+
+<div id="verify" class="page">
+  <div class="card">
+    <h3>Username Checker</h3>
+    <input id="usernameInput" type="text" placeholder="Enter username (no @)">
+    <button onclick="checkUsername()">🔍 Check Availability</button>
+    <div class="result" id="verifyResult">Enter a username to check across platforms.</div>
+  </div>
+  <div class="card">
+    <h3>Supported Platforms</h3>
+    <div class="result">
+      ✅ <b>GitHub</b> — Free official API<br>
+      ✅ <b>TikTok</b> — Free API (shows blue checkmark)<br>
+      ⚠️ <b>Reddit</b> — Free (sometimes blocked)<br>
+      ❌ <b>Twitter/X</b> — No free API<br>
+      ❌ <b>Instagram</b> — No free API
+    </div>
+  </div>
+</div>
+
+<div id="about" class="page">
+  <div class="card">
+    <h3>About DEZONE FF TOOLS</h3>
+    <div class="result">
+      <span class="name">DEZONE FF TOOLS</span>
+      Your all-in-one Free Fire companion app.<br><br>
+      <b>Version:</b> 1.0.0<br>
+      <b>Developer:</b> DEZONE<br>
+      <b>Type:</b> Companion / Utility<br><br>
+      This app provides sensitivity guides, tips, and username verification tools.
+    </div>
+  </div>
+  <div class="card">
+    <h3>Disclaimer</h3>
+    <div class="result">
+      This is an <b>unofficial fan-made</b> companion app. It is <b>not affiliated</b> with Garena, Free Fire, or any social media platform mentioned. No cheats, hacks, or mods are provided.
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 DEZONE FF TOOLS — Fan-made companion</footer>
+
+<script>
+  function showPage(id, el) {
+    var pages = document.querySelectorAll('.page');
+    var tabs = document.querySelectorAll('.tab');
+    var i;
+    for (i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+    for (i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  var sensData = {
+    headshot: { General: 165, RedDot: 150, '2x': 140, '4x': 130, Sniper: 90, Free: 60 },
+    rush:     { General: 190, RedDot: 175, '2x': 160, '4x': 145, Sniper: 100, Free: 70 },
+    sniper:   { General: 120, RedDot: 115, '2x': 110, '4x': 105, Sniper: 80, Free: 50 },
+    balanced: { General: 150, RedDot: 145, '2x': 135, '4x': 125, Sniper: 90, Free: 55 }
+  };
+
+  function updateSens() {
+    var style = document.getElementById('playstyle').value;
+    var data = sensData[style];
+    var html = '';
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        html += '<div class="sens-row"><span>' + key + '</span><span class="sens-val">' + data[key] + '</span></div>';
+      }
+    }
+    document.getElementById('sensResult').innerHTML = html;
+  }
+  updateSens();
+
+  function checkUsername() {
+    var username = document.getElementById('usernameInput').value.trim().replace('@', '');
+    var result = document.getElementById('verifyResult');
+
+    if (!username) {
+      result.innerHTML = '⚠️ Please enter a username.';
+      return;
+    }
+
+    result.innerHTML = '🔍 Checking...';
+
+    // CONNECTED TO YOUR LIVE VERCEL API
+    fetch('https://dezone-api.vercel.app/api/check-username?username=' + encodeURIComponent(username))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.error) {
+          result.innerHTML = '⚠️ ' + data.error;
+          return;
+        }
+        var html = '<span class="name">@' + data.username + '</span>';
+        for (var p in data.results) {
+          if (!data.results.hasOwnProperty(p)) continue;
+          var info = data.results[p];
+          var icon, label;
+          if (info.status === 'available') { icon = '✅'; label = 'Available'; }
+          else if (info.status === 'taken') {
+            icon = '❌'; label = 'Taken';
+            if (info.verified) label += ' ✓ Verified';
+            if (info.nickname) label += ' (' + info.nickname + ')';
+          }
+          else if (info.status === 'unavailable') { icon = '⚠️'; label = info.note || 'Not supported'; }
+          else { icon = '❓'; label = 'Error'; }
+          html += icon + ' <b>' + p + ':</b> ' + label + '<br>';
+        }
+        result.innerHTML = html;
+      })
+      .catch(function (err) {
+        result.innerHTML = '⚠️ Error: ' + err.message;
+      });
+  }
+
+  // --- PWA SERVICE WORKER REGISTRATION ---
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+  }
+</script>
+
+</body>
+  </html>
